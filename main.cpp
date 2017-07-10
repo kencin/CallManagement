@@ -29,11 +29,11 @@ void open()
 	}
 	else if (flag == "y")
 	{
-		cout << "已打开默认文件 student.txt" << endl;
+		cout << "已打开/创建默认文件 student.txt" << endl;
 	}
 	else
 	{
-		cout << "错误的指令，请重新输入(y/n)：";
+		cout <<"错误的指令，请重新输入(y/n)：";
 		open();
 	}
 
@@ -41,17 +41,26 @@ void open()
 
 int main()
 {
-	cout << "是否使用默认学生信息文件：student.txt (y/n)：" << endl;
+	cout << "是否使用/创建默认学生信息文件：student.txt (y/n)：" << endl;
 	open();
-	Student m_stu;
+	Student<int> m_stu;
 	int choice;
 	menu();
-
 	do {
-		m_stu.readFile(filename);
 		cout << "请输入指令:";
 		cin >> choice;
-		switch (choice) {
+		switch (choice) 
+		{
+			try
+			{
+				m_stu.readFile(filename);
+			}
+			catch (string &a)
+			{
+				cout << a;
+				system("pause");
+				return 0;
+			}
 		case 1: m_stu.LossQuery(); break;
 		case 2: m_stu.Lossmodify(); break;
 		case 3: m_stu.deleteBy(); break;
