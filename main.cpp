@@ -44,14 +44,7 @@ int main()
 	cout << "是否使用/创建默认学生信息文件：student.txt (y/n)：" << endl;
 	open();
 	Student<int> m_stu;
-	int choice;
-	menu();
-	do {
-		cout << "请输入指令:";
-		cin >> choice;
-		switch (choice) 
-		{
-			try
+	try
 			{
 				m_stu.readFile(filename);
 			}
@@ -61,18 +54,38 @@ int main()
 				system("pause");
 				return 0;
 			}
-		case 1: m_stu.LossQuery(); break;
-		case 2: m_stu.Lossmodify(); break;
-		case 3: m_stu.deleteBy(); break;
-		case 4: m_stu.rollcall(); break;
-		case 5: m_stu.logon(); break;
-		case 6: m_stu.modify(); break;
-		case 7: m_stu.Show(); break;
-		case 8: m_stu.Query(); break;
-		case 9: m_stu.saveToFile(); break;
-		case 0:; break;
-		default: cout << "请输入正确的选项" << endl; menu(); break;
+	int number;
+	char str[20];
+	int s;
+	menu();
+		do {
+		cout << "请输入指令:";
+		cin >> number;
+		s = cin.rdstate();        //cin正确类型cin.rdstate返回0，错误返回4
+		while (s)
+		{
+			cin.clear();
+			cin >> str;
+			cout << "请输入正确的指令：" << endl;
+			cin >> number;
 		}
-	} while (choice);
+		  
+		 switch (number)
+			{
+			case 1: m_stu.LossQuery(); break;
+			case 2: m_stu.Lossmodify(); break;
+			case 3: m_stu.deleteBy(); break;
+			case 4: m_stu.rollcall(); break;
+			case 5: m_stu.logon(); break;
+			case 6: m_stu.modify(); break;
+			case 7: m_stu.Show(); break;
+			case 8: m_stu.Query(); break;
+			case 9: m_stu.saveToFile(); break;
+			case 0:  break;
+			default:  break;
+			}
+		
+	}while (number);
+	
 	return 0;
 }
